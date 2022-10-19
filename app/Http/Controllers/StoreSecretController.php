@@ -21,12 +21,14 @@ class StoreSecretController extends Controller
 
         $privateKey = PrivateKey::fromString($user->private_key);
 
-        $data = $request->only(['store', 'key', 'value']);
+        $data = $request->only(['key', 'value']);
+
+        $hash = sha1($data['key'] . env('SECRETS_PEPPER'));
 
         $decryptedData = $privateKey->decrypt(base64_decode($data['value']));
 
         $encryptedData = $privateKey->encrypt($decryptedData);
 
-        Redis::set("{$data['store']}:{$data['key']}", $encryptedData);
+        Redis::set($hash, $encryptedData);
     }
 }

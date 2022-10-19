@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
 
-class RetrieveSecretController extends Controller
+class DeleteSecretController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -14,10 +14,13 @@ class RetrieveSecretController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request, $key)
+    public function __invoke(Request $request)
     {
+        $user = Auth::user();
 
-        $hash = sha1($key . env('SECRETS_PEPPER'));
+        $data = $request->only(['key']);
+
+        $hash = sha1($data['key'] + env('SECRETS_PEPPER'));
 
         $encryptedData = base64_encode(Redis::get($hash));
 

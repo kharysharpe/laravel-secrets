@@ -23,6 +23,6 @@ use Illuminate\Support\Facades\Route;
 Route::name('secrets.')->middleware(['auth:sanctum'])->prefix('v1')->group(
     function () {
         Route::post('/secrets', StoreSecretController::class)->name('store');
-        Route::get('/secrets', RetrieveSecretController::class)->name('retrieve');
+        Route::get('/secrets/{key}', RetrieveSecretController::class)->name('retrieve');
     }
 );
