@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Cache;
 
 class DeleteSecretController extends Controller
 {
@@ -14,16 +14,12 @@ class DeleteSecretController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request)
+    public function __invoke(Request $request, $key)
     {
-        $user = Auth::user();
+        $hash = sha1($key + env('SECRETS_PEPPER'));
 
-        $data = $request->only(['key']);
+        Cache::forget($hash);
 
-        $hash = sha1($data['key'] + env('SECRETS_PEPPER'));
-
-        $encryptedData = base64_encode(Redis::get($hash));
-
-        return ['value' => $encryptedData];
+        return ['deleted' => true];
     }
 }
