@@ -13,6 +13,11 @@ php artisan client:new
 This will start a wizard to create a user (Client) and generates a token along with a public and private key.
 This information should be securely transferred to the Client and will be used to store and/or retrieving secrets on the Laravel Secrets Server
 
+## Requirements
+
+* Redis server for storing secrets 
+* 
+_(This may change to a driver based solution that you can determine your own storage method)_
 
 ## Demo Client App
 Client Demo (PoC)
