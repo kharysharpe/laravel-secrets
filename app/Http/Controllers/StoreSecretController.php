@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Cache;
 use Spatie\Crypto\Rsa\PrivateKey;
 
 class StoreSecretController extends Controller
@@ -29,6 +29,6 @@ class StoreSecretController extends Controller
 
         $encryptedData = $privateKey->encrypt($decryptedData);
 
-        Redis::set($hash, $encryptedData);
+        Cache::put($hash, $encryptedData);
     }
 }
