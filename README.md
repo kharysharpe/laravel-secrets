@@ -1,6 +1,9 @@
 # Laravel Secrets Server (PoC)
 
-Is a key value RESTful API for storing and retrieving secrets
+Use your current web skills and manage your secrets.
+
+Laravel Secrets is a key value RESTful API for storing and retrieving secrets
+
 ## Usage
 
 ```
