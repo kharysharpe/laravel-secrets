@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Controllers\DeleteSecretController;
+use App\Http\Controllers\FlushSecretController;
 use App\Http\Controllers\RetrieveSecretController;
 use App\Http\Controllers\StoreSecretController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,5 +26,6 @@ Route::name('secrets.')->middleware(['auth:sanctum'])->prefix('v1')->group(
         Route::post('/secrets', StoreSecretController::class)->name('store');
         Route::get('/secrets/{key}', RetrieveSecretController::class)->name('retrieve');
         Route::delete('/secrets/{key}', DeleteSecretController::class)->name('delete');
+        Route::delete('/secrets', FlushSecretController::class)->name('flush');
     }
 );

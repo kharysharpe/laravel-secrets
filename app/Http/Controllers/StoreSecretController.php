@@ -30,5 +30,7 @@ class StoreSecretController extends Controller
         $encryptedData = $privateKey->encrypt($decryptedData);
 
         Cache::put($hash, $encryptedData);
+
+        return ['stored' => true];
     }
 }
