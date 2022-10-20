@@ -13,11 +13,13 @@ php artisan client:new
 This will start a wizard to create a user (Client) and generates a token along with a public and private key.
 This information should be securely transferred to the Client and will be used to store and/or retrieving secrets on the Laravel Secrets Server
 
-## Requirements
+### Setup
 
-* Redis server for storing secrets 
-* 
-_(This may change to a driver based solution that you can determine your own storage method)_
+1. Configure Laravel cache
+2. Migrate Datbase (`php artisan migrate`)
+3. Create Client `php artisan client:new`
+4. Securely share token and public key with Client app
+5. Start Server `e.g. php artisan serve`
 
 ## Demo Client App
 Client Demo (PoC)
@@ -41,5 +43,3 @@ https://github.com/kharysharpe/laravel-secrets-client-demo
 - Add GUI
 - Add Expiration of Secrets
 - Add removing secrets (soft delete?)
-- ACL ?
-- 
