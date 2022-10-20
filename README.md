@@ -26,6 +26,10 @@ This information should be securely transferred to the Client and will be used t
 2. Server retrieves data and sends it encrypted
 3. Client decrypts data with Public Key
 
+Client Demo (PoC)
+https://github.com/kharysharpe/laravel-secrets-client-demo
+
+
 ## TODO
 - Add GUI
 - Add Expiration of Secrets
